@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import image1 from './assets/bgabogado.jpg';
+import image2 from './assets/bgcontable.avif';
 
 export default function EstudioGamarraImpactante() {
   const [area, setArea] = useState('juridico');
@@ -41,9 +43,8 @@ export default function EstudioGamarraImpactante() {
   const textMarca = esJuridico ? 'text-amber-600' : 'text-emerald-400 font-sans tracking-tight';
 
   // Hero y Degradados de Fondo
-  const bgHero = esJuridico 
-    ? 'bg-linear-to-b from-amber-500/10 via-amber-500/5 to-transparent' 
-    : 'bg-linear-to-b from-emerald-500/10 via-emerald-950/20 to-transparent';
+  const imgHeroJuridico = image1; 
+  const imgHeroContable = image2;
   
   const textTituloHero = esJuridico ? 'text-slate-900 font-serif' : 'text-white font-sans font-black tracking-tight';
   const textSubtituloHero = esJuridico ? 'text-amber-600' : 'text-emerald-400';
@@ -125,26 +126,52 @@ export default function EstudioGamarraImpactante() {
         {renderSwitch(true)}
       </div>
 
-      {/* 2. HERO CON EL CONTROL DE IMPACTO */}
-      <section className={`py-24 px-4 ${bgHero} text-center transition-all duration-100 overflow-hidden relative`}>
+
+      {/* 2. HERO CON DOS IMÁGENES DE FONDO EN TRANSICIÓN */}
+      <section className="py-24 px-4 text-center overflow-hidden relative min-h-[450px] flex items-center justify-center">
+        
+        {/* Imagen de Fondo Jurídica */}
+        <div 
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+            esJuridico ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ backgroundImage: `url(${imgHeroJuridico})` }}
+        />
+        
+        {/* Imagen de Fondo Contable */}
+        <div 
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+            !esJuridico ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ backgroundImage: `url(${imgHeroContable})` }}
+        />
+
+        {/* Capa de superposición (Overlay) para asegurar que el texto sea legible */}
+        <div className={`absolute inset-0 transition-colors duration-1000 ${
+          esJuridico 
+            ? 'bg-slate-50/60 backdrop-blur-xs' 
+            : 'bg-slate-950/80 backdrop-blur-xs'
+        }`} />
+
+        {/* Glow extra que ya tenías para el modo contable */}
         {!esJuridico && (
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-emerald-500/10 rounded-full blur-3xl pointer-events-none z-10 animate-pulse"></div>
         )}
 
-        <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-10">
-          <span className={`text-xs font-bold uppercase tracking-widest transition-colors duration-800 ${textSubtituloHero}`}>
+        {/* Contenido del Hero (Asegurado con z-20 para quedar arriba de los fondos) */}
+        <div className="max-w-3xl mx-auto flex flex-col gap-6 relative z-20 w-full">
+          <span className={`text-xs font-bold uppercase tracking-widest transition-colors duration-700 ${textSubtituloHero}`}>
             {esJuridico ? '✨ Respaldo Legal Profesional' : '⚡ Inteligencia Fiscal & Financiera'}
           </span>
-          <h1 className={`text-3xl sm:text-5xl font-bold leading-tight transition-all duration-800 ${textTituloHero}`}>
+          <h1 className={`text-3xl sm:text-5xl font-bold leading-tight transition-all duration-700 ${textTituloHero}`}>
             {esJuridico 
               ? 'Soluciones jurídicas estratégicas para proteger sus derechos e intereses' 
               : 'Estructuración contable y optimización impositiva de alta precisión'}
           </h1>
-          <p className={`text-sm sm:text-base max-w-xl mx-auto transition-colors duration-800 ${esJuridico ? 'text-slate-500' : 'text-slate-400'}`}>
+          <p className={`text-sm sm:text-base max-w-xl mx-auto transition-colors duration-700 ${esJuridico ? 'text-slate-800' : 'text-slate-400'}`}>
             Unimos la rigurosidad del derecho con la agilidad de las finanzas. Altere el enfoque del estudio presionando el selector inferior.
           </p>
 
-          {/* CONTENEDOR ANCLA ORIGINAL */}
           <div ref={triggerRef} className={`transition-all duration-300 ${
             esSticky ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
           }`}>
