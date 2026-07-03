@@ -365,7 +365,117 @@ export default function EstudioGamarraImpactante() {
           </form>
         </div>
       </section>
+          
+          {/* 7. FOOTER INTEGRADO Y DINÁMICO */}
+      <footer className={`border-t transition-colors duration-700 ${
+        esJuridico 
+          ? 'bg-white border-slate-200 text-slate-600' 
+          : 'bg-slate-950 border-slate-900 text-slate-400'
+      }`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12">
+          
+          {/* Grilla Principal */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12">
+            
+            {/* Columna 1: Marca y Propósito (Ocupa 5 columnas en escritorio) */}
+            <div className="md:col-span-5 flex flex-col gap-4">
+              <div className="flex flex-col">
+                <span className={`text-lg font-bold tracking-wide transition-colors duration-500 ${textMarca}`}>
+                  Gamarra & Asociados
+                </span>
+                <span className="text-xs font-medium tracking-widest uppercase mt-0.5 opacity-80">
+                  Estudio Jurídico Contable
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm leading-relaxed max-w-sm">
+                Ofrecemos un enfoque centralizado donde la rigurosidad legal y la precisión financiera se unen para potenciar y proteger su empresa o patrimonio.
+              </p>
+            </div>
 
+            {/* Columna 2: Enlaces Rápidos (Ocupa 3 columnas) */}
+            <div className="md:col-span-3 flex flex-col gap-3">
+              <h4 className={`text-xs font-bold uppercase tracking-widest ${textSubtituloHero}`}>
+                Navegación
+              </h4>
+              <ul className="flex flex-col gap-2 text-xs sm:text-sm">
+                <li>
+                  <a href="#sobre-nosotros" className={`transition-colors ${esJuridico ? 'hover:text-amber-600' : 'hover:text-emerald-400'}`}>
+                    Sobre Nosotros
+                  </a>
+                </li>
+                <li>
+                  <a href="#servicios" className={`transition-colors ${esJuridico ? 'hover:text-amber-600' : 'hover:text-emerald-400'}`}>
+                    Servicios Especializados
+                  </a>
+                </li>
+                <li>
+                  <a href="#ubicacion" className={`transition-colors ${esJuridico ? 'hover:text-amber-600' : 'hover:text-emerald-400'}`}>
+                    Oficinas Centrales
+                  </a>
+                </li>
+                <li>
+                  <a href="#contacto" className={`transition-colors ${esJuridico ? 'hover:text-amber-600' : 'hover:text-emerald-400'}`}>
+                    Contacto Profesional
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Columna 3: Especialidades según estado activo (Ocupa 4 columnas) */}
+            <div className="md:col-span-4 flex flex-col gap-3">
+              <h4 className={`text-xs font-bold uppercase tracking-widest ${textSubtituloHero}`}>
+                {esJuridico ? 'Área Legal' : 'Área Contable'}
+              </h4>
+              <p className="text-xs mb-1">
+                {esJuridico 
+                  ? 'Soluciones y dictámenes estratégicos activos:' 
+                  : 'Estructuración tributaria y auditoría activa:'}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {esJuridico ? (
+                  <>
+                    <span className={`px-2 py-1 text-[11px] rounded-md border ${esJuridico ? 'bg-slate-100 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>Derecho Civil</span>
+                    <span className={`px-2 py-1 text-[11px] rounded-md border ${esJuridico ? 'bg-slate-100 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>Laboral Empresario</span>
+                    <span className={`px-2 py-1 text-[11px] rounded-md border ${esJuridico ? 'bg-slate-100 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>Sucesiones</span>
+                  </>
+                ) : (
+                  <>
+                    <span className={`px-2 py-1 text-[11px] rounded-md border ${esJuridico ? 'bg-slate-100 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>Tax Planning</span>
+                    <span className={`px-2 py-1 text-[11px] rounded-md border ${esJuridico ? 'bg-slate-100 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>Balances</span>
+                    <span className={`px-2 py-1 text-[11px] rounded-md border ${esJuridico ? 'bg-slate-100 border-slate-200' : 'bg-slate-900 border-slate-800'}`}>Payroll</span>
+                  </>
+                )}
+              </div>
+            </div>
+
+          </div>
+
+          {/* Línea Divisoria Inferior */}
+          <div className={`border-t pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] sm:text-xs opacity-75 ${
+            esJuridico ? 'border-slate-200' : 'border-slate-900'
+          }`}>
+            <p>
+              © {new Date().getFullYear()} Gamarra & Asociados. Todos los derechos reservados.
+            </p>
+              <p className="mt-2 md:mt-0 italic">
+                Desarrollado por  
+                <a 
+                  href="https://portfolio-royf.vercel.app/"
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`font-bold transition-colors hover:underline duration-300 ml-1 ${
+                  esJuridico ? 'text-amber-600' : 'text-emerald-400'
+                  }`}>
+                  Roy Frey
+                </a>
+              </p>
+            <p className="flex items-center gap-1">
+              <span>Puerto Iguazú, Misiones, Argentina</span>
+            </p>
+          </div>
+
+        </div>
+      </footer>
     </div>
   );
 }
